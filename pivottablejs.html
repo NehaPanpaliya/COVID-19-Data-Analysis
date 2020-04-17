@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,Country/Region,total
+0,Afghanistan,438
+1,Albania,2846
+2,Algeria,5984
+3,Andorra,1164
+4,Angola,45
+5,Antigua and Barbuda,9
+6,Argentina,7174
+7,Armenia,2463
+8,Australia,24205
+9,Austria,82571
+10,Azerbaijan,2724
+11,Bahamas,69
+12,Bahrain,11151
+13,Bangladesh,692
+14,Barbados,126
+15,Belarus,2283
+16,Belgium,87814
+17,Belize,0
+18,Benin,106
+19,Bhutan,29
+20,Bolivia,49
+21,Bosnia and Herzegovina,1926
+22,Botswana,0
+23,Brazil,33269
+24,Brunei,1570
+25,Bulgaria,972
+26,Burkina Faso,2261
+27,Burma,16
+28,Burundi,0
+29,Cabo Verde,11
+30,Cambodia,1170
+31,Cameroon,1125
+32,Canada,85336
+33,Central African Republic,15
+34,Chad,23
+35,Chile,23480
+36,China,3626401
+37,Colombia,3272
+38,Congo (Brazzaville),66
+39,Congo (Kinshasa),183
+40,Costa Rica,596
+41,Cote d'Ivoire,983
+42,Croatia,4291
+43,Cuba,992
+44,Cyprus,913
+45,Czechia,5541
+46,Denmark,31027
+47,Diamond Princess,18984
+48,Djibouti,439
+49,Dominica,54
+50,Dominican Republic,1374
+51,Ecuador,5342
+52,Egypt,7443
+53,El Salvador,202
+54,Equatorial Guinea,43
+55,Eritrea,0
+56,Estonia,1415
+57,Eswatini,74
+58,Ethiopia,130
+59,Fiji,0
+60,Finland,6112
+61,France,405708
+62,Gabon,20
+63,Gambia,32
+64,Georgia,929
+65,Germany,806257
+66,Ghana,427
+67,Greece,3791
+68,Grenada,0
+69,Guatemala,317
+70,Guinea,215
+71,Guinea-Bissau,0
+72,Guyana,88
+73,Haiti,8
+74,Holy See,18
+75,Honduras,107
+76,Hungary,1848
+77,Iceland,11618
+78,India,12334
+79,Indonesia,4831
+80,Iran,693261
+81,Iraq,9226
+82,Ireland,519
+83,Israel,19700
+84,Italy,593621
+85,Jamaica,210
+86,Japan,16436
+87,Jordan,2529
+88,Kazakhstan,1559
+89,Kenya,316
+90,"Korea, South",163597
+91,Kosovo,623
+92,Kuwait,2659
+93,Kyrgyzstan,612
+94,Laos,4
+95,Latvia,302
+96,Lebanon,1319
+97,Liberia,43
+98,Libya,82
+99,Liechtenstein,605
+100,Lithuania,819
+101,Luxembourg,7508
+102,MS Zaandam,0
+103,Madagascar,181
+104,Malawi,0
+105,Malaysia,29808
+106,Maldives,297
+107,Mali,255
+108,Malta,380
+109,Mauritania,38
+110,Mauritius,403
+111,Mexico,15753
+112,Moldova,1222
+113,Monaco,93
+114,Mongolia,59
+115,Montenegro,191
+116,Morocco,2094
+117,Mozambique,20
+118,Namibia,64
+119,Nepal,66
+120,Netherlands,5263
+121,New Zealand,5856
+122,Nicaragua,20
+123,Niger,635
+124,Nigeria,1008
+125,North Macedonia,750
+126,Norway,571
+127,Oman,1827
+128,Pakistan,10856
+129,Panama,431
+130,Papua New Guinea,0
+131,Paraguay,253
+132,Peru,28803
+133,Philippines,2857
+134,Poland,5041
+135,Portugal,3669
+136,Qatar,3911
+137,Romania,11898
+138,Russia,14761
+139,Rwanda,284
+140,Saint Kitts and Nevis,0
+141,Saint Lucia,57
+142,Saint Vincent and the Grenadines,20
+143,San Marino,745
+144,Sao Tome and Principe,0
+145,Saudi Arabia,10685
+146,Senegal,2140
+147,Serbia,38
+148,Seychelles,0
+149,Sierra Leone,0
+150,Singapore,11640
+151,Slovakia,751
+152,Slovenia,1908
+153,Somalia,22
+154,South Africa,4311
+155,South Sudan,0
+156,Spain,894016
+157,Sri Lanka,835
+158,Sudan,41
+159,Suriname,43
+160,Sweden,4695
+161,Switzerland,165483
+162,Syria,51
+163,Taiwan*,2027
+164,Tanzania,86
+165,Thailand,18050
+166,Timor-Leste,7
+167,Togo,415
+168,Trinidad and Tobago,118
+169,Tunisia,407
+170,Turkey,40983
+171,US,460505
+172,Uganda,55
+173,Ukraine,1057
+174,United Arab Emirates,7893
+175,United Kingdom,7586
+176,Uruguay,2670
+177,Uzbekistan,846
+178,Venezuela,1493
+179,Vietnam,2788
+180,West Bank and Gaza,871
+181,Western Sahara,0
+182,Yemen,0
+183,Zambia,253
+184,Zimbabwe,2
+</div>
+    </body>
+</html>
